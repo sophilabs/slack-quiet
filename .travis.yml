@@ -10,16 +10,14 @@ before_install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update
   - sudo apt-get -y install docker-ce
-    
-before_script:
-  - docker build -t sophilabs/slack-silence:latest .
-  - docker ps -a
 
 script:
-  - docker run sophilabs/slack-silence:latest mix test
+  - docker build -t slack_silence_test -f dev.dockerfile .
+  - docker run --rm slack_silence_test mix test
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker build -t sophilabs/slack-silence:latest .
       echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
       docker push sophilabs/slack-silence:latest
     fi
