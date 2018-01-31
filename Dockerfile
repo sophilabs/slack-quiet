@@ -33,9 +33,7 @@ RUN mix release --env=prod --verbose \
     && mv _build/prod/rel/${APP_NAME} /opt/release \
     && mv /opt/release/bin/${APP_NAME} /opt/release/bin/start_server
 
-FROM alpine:latest
-
-RUN apk update && apk --no-cache --update add bash openssl-dev musl
+FROM elixir:1.6.1
 
 ENV MIX_ENV=prod REPLACE_OS_VARS=true
 
