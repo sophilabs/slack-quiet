@@ -13,7 +13,7 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker build -t sophilabs/slack-quiet:latest .;
+      docker build -t sophilabs/slack-silence:latest .;
       echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
-      docker push sophilabs/slack-quiet:latest;
+      docker push sophilabs/slack-silence:latest;
     fi
