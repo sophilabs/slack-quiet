@@ -1,8 +1,8 @@
 defmodule SlackQuiet.LastUsageRegistry do
   @moduledoc """
-  We don't want to allow users to span `/quiet` in Slack, so we throttle them.
+  We don't want to allow users to spam `/quiet` in Slack, so we throttle them.
 
-  We maintain an Agent with information about the last usage of the command
+  We maintain an agent with information about the last usage of the command
   for every user and we check if it has passed enough seconds since the last time.
   """
 
@@ -48,9 +48,17 @@ defmodule SlackQuiet.LastUsageRegistry do
     Agent.update(__MODULE__, &Map.put(&1, user_id, naive_datetime))
   end
 
-  def flush do
-    Agent.update(__MODULE__, fn _ -> %{} end)
-  end
+  @doc """
+  Removes all entries in the registry.
+
+  ## Examples
+
+      iex> flush()
+      :ok
+
+  """
+  @spec flush :: :ok
+  def flush, do: Agent.update(__MODULE__, fn _ -> %{} end)
 
   @doc """
   Checks if the user is allowed to use the command right now.
