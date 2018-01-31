@@ -15,8 +15,9 @@ use Mix.Config
 # which you typically run after static files are built.
 config :slack_quiet, SlackQuietWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: "${PORT}"],
+  url: [host: "${HOST}", port: "${PORT}"],
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -61,4 +62,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-config :slack_quiet, SlackQuietWeb.Endpoint, secret_key_base: System.get_env("SECRET_KEY_BASE")
+config :slack_quiet, SlackQuietWeb.Endpoint, secret_key_base: "${SECRET_KEY_BASE}"

@@ -38,6 +38,7 @@ defmodule SlackQuiet.Mixfile do
       {:cowboy, "~> 1.0"},
       {:poison, "~> 3.1.0"},
       {:httpoison, "~> 1.0.0"},
+      {:distillery, "~> 1.5.2", runtime: false},
       {:credo, "~> 0.8.10", only: [:dev, :test], runtime: false}
     ]
   end

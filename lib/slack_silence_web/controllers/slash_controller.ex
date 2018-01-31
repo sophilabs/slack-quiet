@@ -8,6 +8,8 @@ defmodule SlackQuietWeb.SlashController do
 
   @valid_locations ~w(hq brooklyn)
 
+  @locations_names %{"hq" => "HQ", "brooklyn" => "Brooklyn"}
+
   @command_doc """
   *usage:* `/quiet location floor`
 
@@ -90,8 +92,8 @@ defmodule SlackQuietWeb.SlashController do
   defp send_delayed_response(response_url, [location | [floor]]) do
     response = %{
       response_type: "in_channel",
-      username: "Quiet Bot",
-      text: "<!here> Someone is asking for silence in #{location}. Floor: #{floor}."
+      text:
+        "<!here> Someone is asking for silence in #{@locations_names[location]}. Floor: #{floor}."
     }
 
     headers = ["Content-Type": "application/json"]
