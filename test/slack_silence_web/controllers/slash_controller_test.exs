@@ -1,5 +1,5 @@
-defmodule SlackSilenceWeb.SlashControllerTest do
-  use SlackSilenceWeb.ConnCase, async: true
+defmodule SlackQuietWeb.SlashControllerTest do
+  use SlackQuietWeb.ConnCase, async: true
 
   @slack_payload %{
     token: "gIkuvaNzQIHg97ATvDxqgjtO",
@@ -14,12 +14,12 @@ defmodule SlackSilenceWeb.SlashControllerTest do
     command: "/weather",
     text: "94070",
     response_url: "https://hooks.slack.com/commands/1234/5678",
-    trigger_id: "13345224609.738474920.8088930838d88f008e0",
+    trigger_id: "13345224609.738474920.8088930838d88f008e0"
   }
 
   describe "health_check/2" do
     test "always responds with status 200", %{conn: conn} do
-      conn = get conn, "/"
+      conn = get(conn, "/")
 
       response(conn, 200)
     end
@@ -27,7 +27,7 @@ defmodule SlackSilenceWeb.SlashControllerTest do
 
   describe "slash_command/2" do
     test "always responds with status 200", %{conn: conn} do
-      conn = post conn, "/", @slack_payload
+      conn = post(conn, "/", @slack_payload)
 
       response(conn, 200)
     end

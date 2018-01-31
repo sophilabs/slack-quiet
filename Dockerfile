@@ -1,6 +1,6 @@
 FROM elixir:1.6.1
 
-LABEL name="slack_silence"
+LABEL name="slack_quiet"
 LABEL version="1.0.0"
 LABEL maintainer="dstratta@sophilabs.com"
 

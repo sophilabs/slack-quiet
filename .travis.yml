@@ -6,12 +6,14 @@ services:
   - docker
 
 script:
-  - docker build -t slack_silence_test -f dev.dockerfile .
-  - docker run --rm slack_silence_test mix test
+  - docker build -t slack_quiet_test -f dev.dockerfile .
+  - docker run --rm slack_quiet_test mix test
+  - docker run --rm slack_quiet_test mix format --check-formatted
+  - docker run --rm slack_quiet_test mix credo
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker build -t sophilabs/slack-silence:latest .;
+      docker build -t sophilabs/slack-quiet:latest .;
       echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
-      docker push sophilabs/slack-silence:latest;
+      docker push sophilabs/slack-quiet:latest;
     fi

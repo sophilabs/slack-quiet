@@ -1,18 +1,30 @@
-# SlackSilence
+# Slack Quiet
 
-To start your Phoenix server:
+[![Build Status](https://travis-ci.org/sophilabs/slack-quiet.svg?branch=master)](https://travis-ci.org/sophilabs/slack-quiet)
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+Slack Quiet is a Slack slash command to anonymously ask for silence in the workplace.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Usage
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+The command syntax is the following:
 
-## Learn more
+```
+/quiet <location> <floor>
+```
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Example:
+
+```
+/quiet hq 1
+```
+
+## License
+
+Slack Quiet is MIT Licensed. Copyright (c) 2018 Sophilabs, Inc.
+
+## Credits
+
+![Logo](https://s3.amazonaws.com/sophilabs-assets/logo/logo_300x66.gif)
+
+This project is maintained and funded by Sophilabs, Inc.
+The names and logos for sophilabs are trademarks of sophilabs, inc.

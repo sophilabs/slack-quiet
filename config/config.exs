@@ -6,12 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :slack_silence, SlackSilenceWeb.Endpoint,
+config :slack_quiet, SlackQuietWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "CQNu6sCApWrWdBlu/yj+Q/Vydp0D+U0AllMAv/69mWISGjen4EluDDrnmgOXAhPF",
-  render_errors: [view: SlackSilenceWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: SlackSilence.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: SlackQuietWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: SlackQuiet.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -20,4 +19,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

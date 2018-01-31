@@ -1,14 +1,14 @@
-defmodule SlackSilence.Mixfile do
+defmodule SlackQuiet.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :slack_silence,
+      app: :slack_quiet,
       version: "0.0.1",
       elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -18,14 +18,14 @@ defmodule SlackSilence.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {SlackSilence.Application, []},
+      mod: {SlackQuiet.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -38,6 +38,7 @@ defmodule SlackSilence.Mixfile do
       {:cowboy, "~> 1.0"},
       {:poison, "~> 3.1.0"},
       {:httpoison, "~> 1.0.0"},
+      {:credo, "~> 0.8.10", only: [:dev, :test], runtime: false}
     ]
   end
 end

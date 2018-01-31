@@ -1,6 +1,6 @@
-defmodule SlackSilence.LastUsageRegistry do
+defmodule SlackQuiet.LastUsageRegistry do
   @moduledoc """
-  We don't want to allow users to span `/silence` in Slack, so we throttle them.
+  We don't want to allow users to span `/quiet` in Slack, so we throttle them.
 
   We maintain an Agent with information about the last usage of the command
   for every user and we check if it has passed enough seconds since the last time.

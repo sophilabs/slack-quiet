@@ -1,4 +1,4 @@
-defmodule SlackSilenceWeb.ChannelCase do
+defmodule SlackQuietWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,13 +21,11 @@ defmodule SlackSilenceWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint SlackSilenceWeb.Endpoint
+      @endpoint SlackQuietWeb.Endpoint
     end
   end
-
 
   setup _tags do
     :ok
   end
-
 end

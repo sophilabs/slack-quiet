@@ -1,4 +1,4 @@
-defmodule SlackSilenceWeb.ErrorHelpers do
+defmodule SlackQuietWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -21,9 +21,9 @@ defmodule SlackSilenceWeb.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(SlackSilenceWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SlackQuietWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SlackSilenceWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SlackQuietWeb.Gettext, "errors", msg, opts)
     end
   end
 end

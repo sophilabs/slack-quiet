@@ -1,11 +1,11 @@
-defmodule SlackSilenceWeb.Gettext do
+defmodule SlackQuietWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import SlackSilenceWeb.Gettext
+      import SlackQuietWeb.Gettext
 
       # Simple translation
       gettext "Here is the string to translate"
@@ -20,5 +20,5 @@ defmodule SlackSilenceWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :slack_silence
+  use Gettext, otp_app: :slack_quiet
 end

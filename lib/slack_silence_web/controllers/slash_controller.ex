@@ -1,23 +1,22 @@
-defmodule SlackSilenceWeb.SlashController do
+defmodule SlackQuietWeb.SlashController do
   @moduledoc """
   The slash command controller.
   """
 
-  use SlackSilenceWeb, :controller
-  import SlackSilence.LastUsageRegistry
+  use SlackQuietWeb, :controller
+  import SlackQuiet.LastUsageRegistry
 
-  @valid_locations ~w(HQ)
-  @valid_floors ~w(1 2)
+  @valid_locations ~w(hq brooklyn)
 
   @command_doc """
-  *usage:* `/silence location floor`
+  *usage:* `/quiet location floor`
 
   _Asks for silence in the specified location and floor._
 
   Examples:
 
-  `/silence HQ 1`
-  `/silence HQ 2`
+  `/quiet HQ 1`
+  `/quiet Brooklyn 2`
   """
 
   # Slack periodically checks the health of this command.
@@ -71,6 +70,7 @@ defmodule SlackSilenceWeb.SlashController do
 
   defp parse_args(text) do
     text
+    |> String.downcase()
     |> String.trim()
     |> String.split()
   end
@@ -79,7 +79,7 @@ defmodule SlackSilenceWeb.SlashController do
     with 2 <- length(args),
          [location | [floor]] = args,
          true <- location in @valid_locations,
-         true <- floor in @valid_floors do
+         {_, ""} <- Integer.parse(floor) do
       true
     else
       _ -> false
@@ -90,7 +90,7 @@ defmodule SlackSilenceWeb.SlashController do
   defp send_delayed_response(response_url, [location | [floor]]) do
     response = %{
       response_type: "in_channel",
-      username: "Silence Bot",
+      username: "Quiet Bot",
       text: "<!here> Someone is asking for silence in #{location}. Floor: #{floor}."
     }
 

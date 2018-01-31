@@ -1,4 +1,4 @@
-defmodule SlackSilenceWeb.ConnCase do
+defmodule SlackQuietWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,16 +19,14 @@ defmodule SlackSilenceWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import SlackSilenceWeb.Router.Helpers
+      import SlackQuietWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint SlackSilenceWeb.Endpoint
+      @endpoint SlackQuietWeb.Endpoint
     end
   end
-
 
   setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end

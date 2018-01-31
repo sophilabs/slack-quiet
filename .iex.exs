@@ -1,1 +1,1 @@
-import SlackSilence.LastUsageRegistry
+import SlackQuiet.LastUsageRegistry
