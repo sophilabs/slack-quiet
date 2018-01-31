@@ -19,8 +19,8 @@ RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/
 WORKDIR /usr/src/app
 
 # Install dependencies.
-# COPY mix.exs mix.lock ./
-# RUN mix deps.get
+COPY mix.exs mix.lock ./
+RUN mix deps.get
 
 # Bundle app source.
 COPY . .
