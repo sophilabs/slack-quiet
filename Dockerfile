@@ -35,7 +35,7 @@ RUN mix release --env=prod --verbose \
 
 FROM alpine:latest
 
-RUN apk update && apk --no-cache --update add bash openssl-dev
+RUN apk update && apk --no-cache --update add bash openssl-dev musl
 
 ENV MIX_ENV=prod REPLACE_OS_VARS=true
 
