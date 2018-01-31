@@ -8,7 +8,7 @@ defmodule SlackSilence.Application do
     children = [
       # Start the endpoint when the application starts
       SlackSilenceWeb.Endpoint,
-      {SlackSilence.LastUsageRegistry, name: SlackSilence.LastUsageRegistry},
+      SlackSilence.LastUsageRegistry
       # Start your own worker by calling: SlackSilence.Worker.start_link(arg1, arg2, arg3)
       # worker(SlackSilence.Worker, [arg1, arg2, arg3]),
     ]

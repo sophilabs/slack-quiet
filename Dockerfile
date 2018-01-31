@@ -1,8 +1,10 @@
-FROM elixir:1.5.3
+FROM elixir:1.6.1
 
 LABEL name="slack_silence"
 LABEL version="1.0.0"
 LABEL maintainer="dstratta@sophilabs.com"
+
+ENV MIX_ENV=${MIX_ENV:-prod}
 
 # Install the hex package manager.
 RUN mix local.hex --force

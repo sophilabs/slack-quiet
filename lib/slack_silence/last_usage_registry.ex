@@ -9,11 +9,12 @@ defmodule SlackSilence.LastUsageRegistry do
   use Agent
 
   @typedoc "A string representing the user_id of a user."
-  @type user_id :: String.t
+  @type user_id :: String.t()
 
-  @throttle 30 # Seconds to throttle for.
+  # Seconds to throttle for.
+  @throttle 30
 
-  def start_link(opts), do: Agent.start_link(&Map.new/0, opts)
+  def start_link(_), do: Agent.start_link(&Map.new/0, name: __MODULE__)
 
   @doc """
   Looks up the user's last usage of the command.
@@ -30,7 +31,7 @@ defmodule SlackSilence.LastUsageRegistry do
       nil
 
   """
-  @spec lookup_last_usage(user_id) :: NaiveDateTime.t | nil
+  @spec lookup_last_usage(user_id) :: NaiveDateTime.t() | nil
   def lookup_last_usage(user_id), do: Agent.get(__MODULE__, &Map.get(&1, user_id))
 
   @doc """
@@ -42,9 +43,13 @@ defmodule SlackSilence.LastUsageRegistry do
       :ok
 
   """
-  @spec put_last_usage(user_id) :: :ok
-  def put_last_usage(user_id) do
-    Agent.update(__MODULE__, &Map.update(&1, user_id, nil, fn _ -> NaiveDateTime.utc_now() end))
+  @spec put_last_usage(user_id, NaiveDateTime.t()) :: :ok
+  def put_last_usage(user_id, naive_datetime \\ NaiveDateTime.utc_now()) do
+    Agent.update(__MODULE__, &Map.put(&1, user_id, naive_datetime))
+  end
+
+  def flush do
+    Agent.update(__MODULE__, fn _ -> %{} end)
   end
 
   @doc """
@@ -68,9 +73,8 @@ defmodule SlackSilence.LastUsageRegistry do
 
   defp do_can_use_command?(nil), do: true
 
-  defp do_can_use_command?(last_usage) do
-    NaiveDateTime.diff(NaiveDateTime.utc_now(), last_usage) > @throttle
-  end
+  defp do_can_use_command?(last_usage),
+    do: NaiveDateTime.diff(NaiveDateTime.utc_now(), last_usage) > @throttle
 
   @doc """
   Returns the seconds left until the user is allowed

@@ -1,3 +1,4 @@
 {
-  "elixir.projectPath": "."
+  "elixir.projectPath": ".",
+  "elixirLS.dialyzerEnabled": false
 }

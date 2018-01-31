@@ -1,4 +1,4 @@
-FROM elixir:1.5.3
+FROM elixir:1.6.1
 
 LABEL name="slack_silence_dev"
 LABEL version="1.0.0"

@@ -3,6 +3,7 @@
 /db
 /deps
 /*.ez
+.elixir_ls
 
 .env
 
